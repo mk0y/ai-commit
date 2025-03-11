@@ -1,7 +1,7 @@
 {
   "name": "ai-commit",
   "version": "0.1.0",
-  "description": "AI-powered Git commit message generator using OpenAI GPT",
+  "description": "AI-powered Git commit message generator using multiple LLM providers",
   "main": "dist/ai-commit.js",
   "bin": {
     "ai-commit": "dist/ai-commit.js"
@@ -11,6 +11,7 @@
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "start": "node dist/ai-commit.js",
+    "dev": "tsc && node dist/ai-commit.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +23,8 @@
     "commit",
     "ai",
     "openai",
-    "gpt",
+    "anthropic",
+    "llm",
     "cli"
   ],
   "author": "Marko Jakic <marko@astrodev.studio>",

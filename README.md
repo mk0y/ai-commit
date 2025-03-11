@@ -1,15 +1,16 @@
 # AI Commit
 
-AI-powered Git commit message generator using OpenAI GPT.
+AI-powered Git commit message generator using various LLM providers.
 
 ## Overview
 
-AI Commit is a command-line tool that uses OpenAI's GPT model to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
+AI Commit is a command-line tool that uses Large Language Models to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
 
 ## Features
 
 - 🔍 Analyzes your staged Git changes
-- 💡 Generates meaningful commit messages using OpenAI GPT
+- 💡 Generates meaningful commit messages using LLM models
+- 🔄 Support for multiple LLM providers (OpenAI, Anthropic, etc.)
 - ✏️ Allows editing the suggested message in your preferred editor
 - 🔄 Option to regenerate a new message
 - ✅ Simple and intuitive CLI interface
@@ -38,9 +39,11 @@ ai-commit
 
 - Node.js 16 or higher
 - Git
-- OpenAI API key
+- API key for your chosen LLM provider (OpenAI by default)
 
 ## Setup
+
+### OpenAI (Default)
 
 1. Get an OpenAI API key from [OpenAI's platform](https://platform.openai.com/api-keys)
 2. Set your API key as an environment variable:
@@ -49,11 +52,27 @@ ai-commit
 export OPENAI_API_KEY=your_api_key_here
 ```
 
-Alternatively, you can create a `.env` file in your project root:
+### Anthropic Claude
 
+1. Get an Anthropic API key from [Anthropic's console](https://console.anthropic.com/)
+2. Set your API key as an environment variable:
+
+```bash
+export ANTHROPIC_API_KEY=your_api_key_here
+export LLM_PROVIDER=anthropic
 ```
-OPENAI_API_KEY=your_api_key_here
-```
+
+### Environment Variables
+
+You can configure AI Commit using the following environment variables:
+
+- `OPENAI_API_KEY`: API key for OpenAI (required when using OpenAI provider)
+- `ANTHROPIC_API_KEY`: API key for Anthropic (required when using Anthropic provider)
+- `LLM_PROVIDER`: LLM provider to use (default: "openai", options: "openai", "anthropic")
+- `LLM_MODEL`: Model to use with the provider (optional)
+- `LLM_MAX_TOKENS`: Maximum tokens for the response (optional)
+
+Alternatively, you can create a `.env` file in your project root with these variables.
 
 ## Usage
 
@@ -81,6 +100,14 @@ npm run build
 # Run locally
 npm start
 ```
+
+## Extending with New LLM Providers
+
+AI Commit is designed to be easily extended with new LLM providers. To add a new provider:
+
+1. Implement the `LLMProvider` interface in `services/llm-service.ts`
+2. Add your provider to the `getLLMProvider` factory function
+3. Update the `getApiKey` function in `ai-commit.ts` to handle your provider's API key
 
 ## License
 
