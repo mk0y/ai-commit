@@ -1,10 +1,10 @@
-# Git Sage
+# Gity
 
 AI-powered Git commit message generator using various LLM providers.
 
 ## Overview
 
-Git Sage is a command-line tool that uses Large Language Models to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
+Gity is a command-line tool that uses Large Language Models to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
 
 ## Features
 
@@ -20,19 +20,19 @@ Git Sage is a command-line tool that uses Large Language Models to automatically
 ### Using npx (recommended)
 
 ```bash
-npx git-sage
+npx gity
 ```
 
 ### Global Installation
 
 ```bash
-npm install -g git-sage
+npm install -g gity
 ```
 
 Then use it in any Git repository:
 
 ```bash
-git-sage
+gity
 ```
 
 ## Prerequisites
@@ -64,7 +64,7 @@ export LLM_PROVIDER=anthropic
 
 ### Environment Variables
 
-You can configure Git Sage using the following environment variables:
+You can configure Gity using the following environment variables:
 
 - `OPENAI_API_KEY`: API key for OpenAI (required when using OpenAI provider)
 - `ANTHROPIC_API_KEY`: API key for Anthropic (required when using Anthropic provider)
@@ -77,7 +77,7 @@ Alternatively, you can create a `.env` file in your project root with these vari
 ## Usage
 
 1. Stage your changes with `git add`
-2. Run `git-sage`
+2. Run `gity`
 3. Choose an option:
    - Press Enter to accept and commit the suggested message
    - Press `e` to edit the message in your default editor
@@ -88,8 +88,8 @@ Alternatively, you can create a `.env` file in your project root with these vari
 
 ```bash
 # Clone the repository
-git clone https://github.com/mk0y/git-sage.git
-cd git-sage
+git clone https://github.com/mk0y/gity.git
+cd gity
 
 # Install dependencies
 npm install
@@ -103,7 +103,7 @@ npm start
 
 ## Extending with New LLM Providers
 
-Git Sage is designed to be easily extended with new LLM providers. To add a new provider:
+Gity is designed to be easily extended with new LLM providers. To add a new provider:
 
 1. Implement the `LLMProvider` interface in `services/llm-service.ts`
 2. Add your provider to the `getLLMProvider` factory function

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Git Sage CLI Tool
+ * Gity CLI Tool
  * 
  * This script automates the process of generating meaningful Git commit messages
  * using LLM models. It analyzes staged changes (`git diff --cached`),
@@ -19,10 +19,10 @@
  *   - LLM_MAX_TOKENS: Maximum tokens for the response (optional).
  * 
  * Installation:
- *   1. Save this file as `git-sage.ts`
- *   2. Make it executable: `chmod +x git-sage.ts`
- *   3. Optionally move it to a global location: `mv git-sage.ts /usr/local/bin/git-sage`
- *   4. Run it inside a Git repository: `git-sage`
+ *   1. Save this file as `gity.ts`
+ *   2. Make it executable: `chmod +x gity.ts`
+ *   3. Optionally move it to a global location: `mv gity.ts /usr/local/bin/gity`
+ *   4. Run it inside a Git repository: `gity`
  */
 
 import { execSync } from "child_process";
@@ -35,7 +35,7 @@ import { generateCommit, LLMProviderConfig } from "./services/llm-service.js";
 
 dotenv.config();
 
-const TEMP_FILE = join(tmpdir(), "git_sage_msg.txt");
+const TEMP_FILE = join(tmpdir(), "gity_msg.txt");
 const LLM_PROVIDER = process.env.LLM_PROVIDER || "openai";
 const LLM_MODEL = process.env.LLM_MODEL;
 const LLM_MAX_TOKENS = process.env.LLM_MAX_TOKENS ? parseInt(process.env.LLM_MAX_TOKENS) : undefined;
