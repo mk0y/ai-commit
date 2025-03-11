@@ -1,22 +1,22 @@
 {
-  "name": "ai-commit",
+  "name": "git-sage",
   "version": "0.1.0",
   "description": "AI-powered Git commit message generator using multiple LLM providers",
-  "main": "dist/ai-commit.js",
+  "main": "dist/git-sage.js",
   "bin": {
-    "ai-commit": "dist/ai-commit.js"
+    "git-sage": "dist/git-sage.js"
   },
   "type": "module",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "start": "node dist/ai-commit.js",
-    "dev": "tsc && node dist/ai-commit.js",
+    "start": "node dist/git-sage.js",
+    "dev": "tsc && node dist/git-sage.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mk0y/ai-commit.git"
+    "url": "git+https://github.com/mk0y/git-sage.git"
   },
   "keywords": [
     "git",
@@ -30,9 +30,9 @@
   "author": "Marko Jakic <marko@astrodev.studio>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mk0y/ai-commit/issues"
+    "url": "https://github.com/mk0y/git-sage/issues"
   },
-  "homepage": "https://github.com/mk0y/ai-commit#readme",
+  "homepage": "https://github.com/mk0y/git-sage#readme",
   "devDependencies": {
     "@types/node": "^22.13.10",
     "typescript": "^5.0.0"

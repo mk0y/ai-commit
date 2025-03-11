@@ -1,10 +1,10 @@
-# AI Commit
+# Git Sage
 
 AI-powered Git commit message generator using various LLM providers.
 
 ## Overview
 
-AI Commit is a command-line tool that uses Large Language Models to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
+Git Sage is a command-line tool that uses Large Language Models to automatically generate meaningful Git commit messages based on your staged changes. It analyzes the diff of your staged files and suggests a concise, descriptive commit message following best practices.
 
 ## Features
 
@@ -20,19 +20,19 @@ AI Commit is a command-line tool that uses Large Language Models to automaticall
 ### Using npx (recommended)
 
 ```bash
-npx ai-commit
+npx git-sage
 ```
 
 ### Global Installation
 
 ```bash
-npm install -g ai-commit
+npm install -g git-sage
 ```
 
 Then use it in any Git repository:
 
 ```bash
-ai-commit
+git-sage
 ```
 
 ## Prerequisites
@@ -64,7 +64,7 @@ export LLM_PROVIDER=anthropic
 
 ### Environment Variables
 
-You can configure AI Commit using the following environment variables:
+You can configure Git Sage using the following environment variables:
 
 - `OPENAI_API_KEY`: API key for OpenAI (required when using OpenAI provider)
 - `ANTHROPIC_API_KEY`: API key for Anthropic (required when using Anthropic provider)
@@ -77,7 +77,7 @@ Alternatively, you can create a `.env` file in your project root with these vari
 ## Usage
 
 1. Stage your changes with `git add`
-2. Run `ai-commit`
+2. Run `git-sage`
 3. Choose an option:
    - Press Enter to accept and commit the suggested message
    - Press `e` to edit the message in your default editor
@@ -88,8 +88,8 @@ Alternatively, you can create a `.env` file in your project root with these vari
 
 ```bash
 # Clone the repository
-git clone https://github.com/mk0y/ai-commit.git
-cd ai-commit
+git clone https://github.com/mk0y/git-sage.git
+cd git-sage
 
 # Install dependencies
 npm install
@@ -103,11 +103,11 @@ npm start
 
 ## Extending with New LLM Providers
 
-AI Commit is designed to be easily extended with new LLM providers. To add a new provider:
+Git Sage is designed to be easily extended with new LLM providers. To add a new provider:
 
 1. Implement the `LLMProvider` interface in `services/llm-service.ts`
 2. Add your provider to the `getLLMProvider` factory function
-3. Update the `getApiKey` function in `ai-commit.ts` to handle your provider's API key
+3. Update the `getApiKey` function in `git-sage.ts` to handle your provider's API key
 
 ## License
 
