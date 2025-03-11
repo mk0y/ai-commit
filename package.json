@@ -1,0 +1,46 @@
+{
+  "name": "ai-commit",
+  "version": "0.1.0",
+  "description": "AI-powered Git commit message generator using OpenAI GPT",
+  "main": "dist/ai-commit.js",
+  "bin": {
+    "ai-commit": "dist/ai-commit.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/ai-commit.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk0y/ai-commit.git"
+  },
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "openai",
+    "gpt",
+    "cli"
+  ],
+  "author": "Marko Jakic <marko@astrodev.studio>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mk0y/ai-commit/issues"
+  },
+  "homepage": "https://github.com/mk0y/ai-commit#readme",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "readline": "^1.3.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
