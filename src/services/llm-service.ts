@@ -20,6 +20,19 @@ export interface LLMProvider {
   generateCommit(diff: string, config: LLMProviderConfig): Promise<string>;
 }
 
+/**
+ * Helper function to clean LLM responses by removing unwanted double quotes wrapping the content
+ * @param text The text response from LLM
+ * @returns Cleaned text without surrounding double quotes
+ */
+function cleanLLMResponse(text: string): string {
+  // Check if the text is wrapped in double quotes and remove them
+  if (text && text.startsWith('"') && text.endsWith('"')) {
+    return text.slice(1, -1);
+  }
+  return text;
+}
+
 // OpenAI Provider implementation
 export class OpenAIProvider implements LLMProvider {
   async generateCommit(diff: string, config: LLMProviderConfig): Promise<string> {
@@ -51,7 +64,8 @@ export class OpenAIProvider implements LLMProvider {
           };
         }>;
       };
-      return data.choices?.[0]?.message?.content || "chore: update code";
+      const content = data.choices?.[0]?.message?.content || "chore: update code";
+      return cleanLLMResponse(content);
     } catch (error) {
       console.error("❌ Failed to generate commit message:", error);
       return "chore: update code";
@@ -89,7 +103,8 @@ export class AnthropicProvider implements LLMProvider {
           text?: string;
         }>;
       };
-      return data.content?.[0]?.text || "chore: update code";
+      const content = data.content?.[0]?.text || "chore: update code";
+      return cleanLLMResponse(content);
     } catch (error) {
       console.error("❌ Failed to generate commit message:", error);
       return "chore: update code";
