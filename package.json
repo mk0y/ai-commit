@@ -1,6 +1,6 @@
 {
   "name": "gity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AI-powered Git commit message generator using multiple LLM providers",
   "main": "dist/gity.js",
   "bin": {
