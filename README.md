@@ -13,6 +13,7 @@ Gity is a command-line tool that uses Large Language Models to automatically gen
 - 🔄 Support for multiple LLM providers (OpenAI, Anthropic, etc.)
 - ✏️ Allows editing the suggested message in your preferred editor
 - 🔄 Option to regenerate a new message
+- 🌐 Open your repository in the browser with a simple command
 - ✅ Simple and intuitive CLI interface
 
 ## Installation
@@ -76,6 +77,8 @@ Alternatively, you can create a `.env` file in your project root with these vari
 
 ## Usage
 
+### Generate Commit Message
+
 1. Stage your changes with `git add`
 2. Run `gity`
 3. Choose an option:
@@ -83,6 +86,16 @@ Alternatively, you can create a `.env` file in your project root with these vari
    - Press `e` to edit the message in your default editor
    - Press `r` to regenerate a new message
    - Press `q` to quit without committing
+
+### Open Repository in Browser
+
+To open the current repository in your default web browser:
+
+```bash
+gity open
+```
+
+This command parses your `.git/config` file, extracts the repository URL, and opens it in your default browser. It supports both SSH and HTTPS remote URL formats.
 
 ## Development
 
