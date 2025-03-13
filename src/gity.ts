@@ -16,6 +16,8 @@
  *   - gity open: Open the current repository in the browser
  *   - gity [any git command]: Falls back to regular git for unsupported commands
  *   - gity -h, --help: Show help information
+ *   - gity completion: Install shell completion
+ *   - gity menu: Show interactive command menu
  * 
  * Environment Variables:
  *   - OPENAI_API_KEY: API key for OpenAI GPT (required when using OpenAI provider).
@@ -40,6 +42,7 @@ import dotenv from "dotenv";
 import { generateCommit, LLMProviderConfig } from "./services/llm-service.js";
 import { getGitDiff, openRepoInBrowser } from "./services/utils.js";
 import { showHelp, isHelpFlag } from "./services/help-service.js";
+import { installCompletionScript, showInteractiveMenu } from "./services/completion-service.js";
 
 dotenv.config();
 
@@ -63,12 +66,12 @@ function getApiKey(): string | undefined {
 const API_KEY = getApiKey();
 
 // List of commands supported by gity
-const SUPPORTED_COMMANDS = ["open"];
+const SUPPORTED_COMMANDS = ["open", "completion", "menu"];
 
 // Check if a command needs API key
 function commandRequiresApiKey(command: string | undefined): boolean {
   // Help command doesn't require API key
-  if (command && isHelpFlag(command)) {
+  if (command && (isHelpFlag(command) || command === "completion" || command === "menu")) {
     return false;
   }
   return !command || !SUPPORTED_COMMANDS.includes(command);
@@ -103,6 +106,31 @@ async function main(): Promise<void> {
   // Check for help flags
   if (command && isHelpFlag(command)) {
     showHelp();
+    return;
+  }
+  
+  // Handle shell completion installation
+  if (command === "completion") {
+    installCompletionScript();
+    return;
+  }
+  
+  // Handle interactive menu
+  if (command === "menu") {
+    const selectedCommand = await showInteractiveMenu();
+    if (selectedCommand) {
+      if (selectedCommand === "open") {
+        openRepoInBrowser();
+      } else if (selectedCommand === "help") {
+        const output = execSync("gity -h");
+        console.log(output.toString());
+      } else if (selectedCommand === "completion") {
+        installCompletionScript();
+      } else {
+        // For git commands, execute them
+        executeGitCommand([selectedCommand, ...process.argv.slice(3)]);
+      }
+    }
     return;
   }
   

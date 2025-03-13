@@ -14,13 +14,17 @@ USAGE:
   gity                     Generate AI commit message for staged changes
   gity open                Open the current repository in browser
   gity [git command]       Execute any git command (fallback to git)
-  gity -h, --help          Show this help message
+  gity help, -h, --help    Show this help message
+  gity completion          Install shell completion for TAB completion
+  gity menu                Show interactive command selection menu
 
 EXAMPLES:
-  gity                     Generate commit message for staged changes
-  gity open                Open repository in browser
-  gity push -u origin main Push to remote (falls back to git)
-  gity status              Check status (falls back to git)
+  gity                        Generate commit message for staged changes
+  gity open                   Open repository in browser
+  gity push -u origin main    Push to remote (falls back to git)
+  gity status                 Check status (falls back to git)
+  gity completion             Install shell TAB completion
+  gity menu                   Select command from interactive menu
 
 ENVIRONMENT VARIABLES:
   OPENAI_API_KEY           API key for OpenAI GPT
