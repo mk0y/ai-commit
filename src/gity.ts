@@ -15,6 +15,7 @@
  *   - gity: Generate commit message for staged changes
  *   - gity open: Open the current repository in the browser
  *   - gity [any git command]: Falls back to regular git for unsupported commands
+ *   - gity -h, --help: Show help information
  * 
  * Environment Variables:
  *   - OPENAI_API_KEY: API key for OpenAI GPT (required when using OpenAI provider).
@@ -38,6 +39,7 @@ import { join } from "path";
 import dotenv from "dotenv";
 import { generateCommit, LLMProviderConfig } from "./services/llm-service.js";
 import { getGitDiff, openRepoInBrowser } from "./services/utils.js";
+import { showHelp, isHelpFlag } from "./services/help-service.js";
 
 dotenv.config();
 
@@ -65,6 +67,10 @@ const SUPPORTED_COMMANDS = ["open"];
 
 // Check if a command needs API key
 function commandRequiresApiKey(command: string | undefined): boolean {
+  // Help command doesn't require API key
+  if (command && isHelpFlag(command)) {
+    return false;
+  }
   return !command || !SUPPORTED_COMMANDS.includes(command);
 }
 
@@ -93,6 +99,12 @@ function executeGitCommand(args: string[]): void {
 async function main(): Promise<void> {
   // Handle different commands
   const command = process.argv[2];
+  
+  // Check for help flags
+  if (command && isHelpFlag(command)) {
+    showHelp();
+    return;
+  }
   
   if (command === "open") {
     openRepoInBrowser();
